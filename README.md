@@ -11,5 +11,10 @@ cd pihole-dockerapp
 docker-compose up -d
 ```
 
-###### Default stubby.yml is configured to use 4 DNSoTLS Providers (2 Cloudfare IP's and 2 Quad9 IP's) in a roundrobin manner. To change this or any other behavior, refer DNSPrivacy's stubby documentation: https://dnsprivacy.org/wiki/display/DP/Configuring+Stubby
-###### Configure the pihole container: https://hub.docker.com/r/pihole/pihole/
+#### Default stubby.yml is configured to use 4 DNSoTLS Providers (2 Cloudfare IP's and 2 Quad9 IP's) in a roundrobin manner. To change this or any other behavior, refer DNSPrivacy's stubby documentation: https://dnsprivacy.org/wiki/display/DP/Configuring+Stubby
+
+#### To reconfigure the pihole container, refer: https://hub.docker.com/r/pihole/pihole/
+
+#### Wireshark/tcpdump of a sample query
+######pihole --(clearText DNS request)--> Stubby --(encrypted request)--> CloudFare DNS --(encrypted response)--> Stubby --(cleartext Response)--> pihole
+![Sample DNS Request](/wireshark-screenshot.png)
