@@ -16,5 +16,5 @@ docker-compose up -d
 #### To reconfigure the pihole container, refer: https://hub.docker.com/r/pihole/pihole/
 
 #### Wireshark/tcpdump of a sample query
-######pihole --(clearText DNS request)--> Stubby --(encrypted request)--> CloudFare DNS --(encrypted response)--> Stubby --(cleartext Response)--> pihole
+###### pihole --(clearText DNS request)--> Stubby --(encrypted request)--> CloudFare DNS --(encrypted response)--> Stubby --(cleartext Response)--> pihole
 ![Sample DNS Request](/wireshark-screenshot.png)
