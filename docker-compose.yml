@@ -1,0 +1,50 @@
+version: "3"
+
+services:
+  stubby:
+    container_name: stubby
+    image: vineethsv/stubby:latest
+    networks:
+      pihole:
+        ipv4_address: 192.168.253.3
+    expose:
+        - "53"
+    volumes:
+       - './stubby.yml:/home/ubuntu/stubby.yml'
+
+  # More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    networks:
+      pihole:
+        ipv4_address: 192.168.253.2
+    depends_on:
+     - stubby
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "80:80/tcp"
+    environment:
+      WEBPASSWORD: 'PUT_YOUR_PIHOLE_WEB_PASSWORD_HERE'
+      DNS1: 192.168.253.3
+      DNS2: "no"
+    # Volumes store your data between container upgrades
+    volumes:
+       - './etc-pihole/:/etc/pihole/'
+       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    dns:
+      - 127.0.0.1
+    # Recommended but not required (DHCP needs NET_ADMIN)
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+
+networks:
+  pihole:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.253.0/24
