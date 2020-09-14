@@ -4,14 +4,14 @@
 
 ![Network Diagram](/pihole-stubby-dockerized.png)
 
-#### To run the application,just clone the repositary, change the admin password for pihole in the docker-compose.yml file and run docker-compose
+#### To run the application,just clone the repository, change the admin password for pihole in the docker-compose.yml file and run docker-compose
 ```
 git clone pihole-stubby-dockerized pihole-dockerapp
 cd pihole-dockerapp
 docker-compose up -d
 ```
 
-#### Default stubby.yml is configured to use 4 DNSoTLS Providers (2 Cloudfare IP's and 2 Quad9 IP's) in a roundrobin manner. To change this or any other behavior, refer DNSPrivacy's stubby documentation: https://dnsprivacy.org/wiki/display/DP/Configuring+Stubby
+#### Default stubby.yml is configured to use four DNSoTLS Providers (2 Cloudfare IP's and 2 Quad9 IP's) in a roundrobin manner. To change this or any other behavior, refer DNSPrivacy's stubby documentation: https://dnsprivacy.org/wiki/display/DP/Configuring+Stubby
 
 #### To reconfigure the pihole container, refer: https://hub.docker.com/r/pihole/pihole/
 
